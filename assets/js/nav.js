@@ -11,7 +11,7 @@ function saveLang(lang) {
 
 document.addEventListener('DOMContentLoaded', function () {
   if (document.body.hasAttribute('data-home') && readLang() === 'en') {
-    window.location.replace('en/index.html');
+    window.location.replace('en/');
     return;
   }
 

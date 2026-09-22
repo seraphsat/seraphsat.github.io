@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://seraphsat.github.io/sitemap.xml
