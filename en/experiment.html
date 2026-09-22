@@ -60,7 +60,7 @@
   <div class="prose">
     <p>The board carries two MCP9808 digital thermometers of the same type. One is covered with black epoxy (Strongbond 53), the other with a layer of clear epoxy about 2 millimetres thick (Strongbond 110).</p>
     <p>When the satellite comes out of the Earth's shadow into sunlight, the board starts to warm up, and when it enters the shadow, it cools down. These temperature transients are the most interesting parts of the data. Our hypothesis was that the two coatings absorb light and give off heat differently. If so, the difference should show up here, and this is what we want to investigate in orbit.</p>
-    <p>The thermometer under black epoxy is the reference, the one under clear epoxy is the sample we study. We follow how the difference between the two changes from the beginning to the end of the mission. From this we can learn about the thermal inertia of the coatings and about possible UV ageing of the clear epoxy.</p>
+    <p>The thermometer under black epoxy is the reference, the one under clear epoxy is the sample we study. We follow how the difference between the two changes from the beginning to the end of the mission. From this we hope to learn about the thermal inertia of the coatings and about possible UV ageing of the clear epoxy.</p>
     <p>The third sensor is an OPT3002 light sensor. It shows when the Sun shines on the board and when it is in shadow, so we can mark the shadow entries and exits on the temperature curves.</p>
   </div>
   <figure class="diagram">
@@ -103,7 +103,7 @@
   <tr><th>Light sensor</th><td>OPT3002</td></tr>
   <tr><th>Microcontroller</th><td>STM32F103 (C8T6)</td></tr>
   <tr><th>Design tools</th><td>KiCad (PCB), STM32CubeIDE (firmware)</td></tr>
-  <tr><th>Sampling</th><td>every 60 seconds; 10-second mode since September 2026</td></tr>
+  <tr><th>Sampling</th><td>mostly every 60 seconds; every 10 seconds in two sessions in January 2026 and since September 2026</td></tr>
 </table>
 <p class="prose" style="margin-top:12px">The MCP9808 is a digital thermometer IC: it measures the temperature itself and passes a ready-made value to the microcontroller. It is not a thermocouple.</p>
 
@@ -124,6 +124,9 @@
   </div>
   <figcaption>The 3D design of the board and the manufactured boards.</figcaption>
 </figure>
+
+<h3>What we would do differently today</h3>
+<p class="prose">The microcontroller ended up closer to the thermometer under black epoxy than to the one under clear epoxy, so the small amount of heat it gives off while running does not warm the two thermometers equally. We would also put a timestamp in the measurement records, so that the time of each measurement would not have to be reconstructed afterwards. And we would make the two coatings the same size, so that only their material would differ.</p>
 
 <h2>Testing on the ground</h2>
 <div class="split">

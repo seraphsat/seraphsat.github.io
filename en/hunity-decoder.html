@@ -61,6 +61,7 @@
 <h2 style="margin-top:0">Seraph data decoder</h2>
 <div class="prose">
   <p>We wrote this small app to quickly visualise Seraph's data. Paste the board's hexadecimal data lines one per line, and the app plots the curves of the two thermometers and the light sensor. The graphs can be shown as points or lines.</p>
+  <p>Note: Seraph's measurements arrive buffered, so the same measurement can appear more than once, and the lines do not come in the order the measurements were taken. For an accurate curve, sort the lines by the measurement's runtime counter and drop the duplicates.</p>
   <p>The app runs on an external server, so the first load can take a while. If it does not appear in the frame below, <a href="https://seraph-hunity-decoder.onrender.com/">open it in a new tab</a>.</p>
 </div>
 <div class="embed" style="margin-top:16px">

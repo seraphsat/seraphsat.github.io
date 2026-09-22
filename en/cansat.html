@@ -65,7 +65,7 @@
 <h2>Our CanSat</h2>
 <div class="split">
   <div class="prose">
-    <p>We soldered the sensors and the microcontroller onto a circuit board, and a 3D-printed shell protected everything during launch and descent. A single battery powered it for at least four hours. A parachute slowed the descent.</p>
+    <p>We soldered the sensors and the microcontroller onto a circuit board, and a 3D-printed shell protected everything during launch and descent. The electronics were powered by a LiPo battery that lasted at least four hours; the camera had its own battery. A parachute slowed the descent.</p>
     <table class="facts">
       <tr><th>Air pressure and temperature</th><td>BMP280</td></tr>
       <tr><th>Carbon dioxide</th><td>SCD30 (one reading every 2 seconds)</td></tr>
@@ -87,9 +87,9 @@
 <h3>Secondary mission: CO₂ and vegetation</h3>
 <div class="prose">
   <p>Our question was whether the carbon dioxide level of the air is related to how much vegetation there is on the ground below. To find out, we measured two things at the same time.</p>
-  <p>The SCD30 precision CO₂ sensor gives a reading every two seconds. It works by infrared absorption: a special-wavelength infrared LED and a detector measure how much light the CO₂ absorbs. This makes it fairly fast and reliable, and it is easy to read over the I2C bus. We started from the assumption that carbon dioxide (molar mass 44 g/mol) is heavier than air (29 g/mol on average), so its concentration may decrease with height.</p>
+  <p>The SCD30 precision CO₂ sensor gives a reading every two seconds. It works by infrared absorption: a special-wavelength infrared LED and a detector measure how much light the CO₂ absorbs. This makes it fairly fast and reliable, and it is easy to read over the I2C bus. We started from the assumption that carbon dioxide (molar mass 44 g/mol) is heavier than air (29 g/mol on average), so its concentration may decrease with height. That was our starting hypothesis. We now know that the air in the lower atmosphere is constantly mixing, so CO₂ does not settle into layers by molar mass; differences near the ground are caused by sources and sinks at the surface (such as vegetation or traffic) and by air movement.</p>
   <p>The camera at the bottom of the CanSat recorded video throughout the descent, giving us images from different heights. We could estimate the height from the air pressure. The share of green areas (trees, bushes, grass) in the images was determined by an artificial intelligence that we trained ourselves.</p>
-  <p>We collected the training data by hand: on RGB colour picker websites we looked at random colours and decided by eye whether each one counted as green. We collected 680 samples in total. After testing, the accuracy was about 91.9%. Since we deliberately gave the model more colours that occur in nature, we expected about 99% accuracy on real footage.</p>
+  <p>We collected the training data by hand: on RGB colour picker websites we looked at random colours and decided by eye whether each one counted as green. We collected 680 samples in total. After testing, the accuracy was about 91.9%. Since we deliberately gave the model more colours that occur in nature, we expected even better accuracy on real footage.</p>
   <p>Our goal was to show that the amount of CO₂ is related to the amount of vegetation below it. We also wanted to draw attention to deforestation and to the growing amount of greenhouse gases.</p>
 </div>
 <div class="grid grid-2 grid--fit" style="margin-top:12px">
@@ -100,9 +100,23 @@
 <h2>The competition</h2>
 <div class="prose">
   <p>In March 2024, at a meeting codenamed MWAIN ("Meeting without an interesting name"), we received the finalist medal, which meant we had qualified for the CanSat Hungary final. At the end of March we submitted the Pre-Launch Report (PLR). By then the main board was finished; we checked the structure with test throws in Palotakert, and the parachute in a drop test.</p>
-  <p>At the final on 6 April 2024 the team received the Scientific Award (a special prize) and an invitation to the Hungarian launch of ESA's ESERO programme. <a href="https://www.urvilag.hu/magyar_korszeru_oktatas/20240409_cansat_hungary_2024_%E2%80%93_donto" hreflang="hu">Report on the final by Űrvilág (in Hungarian)</a> · <a href="https://iskola.premontrei.hu/hirek/cansat-verseny" hreflang="hu">Our school's article (in Hungarian)</a></p>
-  <p>In May 2024 we also presented the project at the opening of <a href="https://eserohu.hu/">ESERO Hungary</a>, together with our school's CanSat team from the previous year, PreSat.</p>
+  <p>At the final on 6 April 2024 the team received the Scientific Award (a special prize) and an invitation to the Hungarian launch of ESA's ESERO programme. <a href="https://www.urvilag.hu/magyar_korszeru_oktatas/20240409_cansat_hungary_2024_%E2%80%93_donto" hreflang="hu">Report on the final by Űrvilág (in Hungarian)</a> · <a href="https://www.mant.hu/lezajlott-a-2024-es-cansat-verseny-dontoje/" hreflang="hu">MANT (in Hungarian)</a> · <a href="https://spacejunkie.hu/a-hetvegen-lezajlott-a-cansat-2024-muholdepito-verseny-dontoje/" hreflang="hu">Spacejunkie (in Hungarian)</a> · <a href="https://www.esa.int/ESA_Multimedia/Images/2024/05/Student_participants_of_the_Hungarian_CanSat_competition">ESA: photo of the finalists</a> · <a href="https://iskola.premontrei.hu/hirek/cansat-verseny" hreflang="hu">Our school's article (in Hungarian)</a></p>
+  <p>In May 2024 we also presented the project at the opening of <a href="https://eserohu.hu/">ESERO Hungary</a>, together with our school's CanSat team from the previous year, PreSat. <a href="https://www.esa.int/Education/Teachers_Corner/ESERO_Hungary_launches_STEM_education_into_space">ESA's article on the launch of ESERO Hungary</a></p>
   <p>Our CanSat work became a TDK paper (Scientific Students' Associations) at MATE. At the <a href="https://uni-mate.hu/h%C3%ADr/-/content-viewer/m%C3%A9lt%C3%A1n-lehetnek-b%C3%BCszk%C3%A9k-a-tdk-r%C3%A9sztvev%C5%91i/20123" hreflang="hu">institutional TDK conference on 20 November 2024</a> we won 2nd place in the Materials, Industrial Technology and Mechatronics section (Máté Magó, Anna Horel, Zsigmond Csaba). This qualified us for the <a href="https://otdk.hu/otdk-archivum/korabbi-otdk-k/37-otdk/szekciok-felhivasai/muszaki-tudomanyi-szekcio/" hreflang="hu">Technical Sciences Section of the 37th OTDK</a>, where we presented the work at the University of Debrecen, Faculty of Engineering, on 23–25 April 2025.</p>
+</div>
+
+<h3>Flight results</h3>
+<div class="prose">
+  <p>At the final the CanSat was launched twice, both times to about 1 km.</p>
+  <ul>
+    <li>Descent: on the first flight the CanSat got caught in the rocket's parachute, so it came down at an average of 5.9 m/s and landed after 2 minutes 28 seconds. On the second flight our own parachute slowed it down: it descended at 6.6 m/s and landed after 2 minutes 18 seconds, within the planned range of 6–7 m/s.</li>
+    <li>Radio: the link was stable throughout and we received all the data; even the weakest signal stayed within the receiver's sensitivity limit.</li>
+    <li>Acceleration: the highest measured value was 3.5 g on the first flight and 2.2 g on the second.</li>
+    <li>Temperature: the three temperature sensors agreed well; the one closer to the camera read slightly warmer.</li>
+    <li>CO₂: the sensor follows changes with a delay of about half a minute, and the values measured during the descent (about 477–492 ppm) did not change the way we expected. The measurement did not confirm our hypothesis.</li>
+    <li>Image analysis: in the camera footage the program found about 68% and 59% green area. It also produces a black-and-white map in which the non-green areas you can walk on, such as roads and paths, stand out clearly.</li>
+    <li>From the GPS data we redrew the descent path in Google Earth.</li>
+  </ul>
 </div>
 <div class="grid grid-3 grid--fit" style="margin-top:12px">
   <figure><img class="photo" src="../assets/img/dontos-erem.jpg" alt="Red 3D-printed medal with the text Finalist and CanSat Hungary 2024" loading="lazy" width="700" height="688"><figcaption>The finalist medal.</figcaption></figure>
@@ -111,22 +125,22 @@
 </div>
 
 <h2>Documentation</h2>
-<p class="prose">We wrote several reports during the competition. The most detailed one was the Critical Design Review (CDR), which describes the state of 17 February 2024. The sections below summarise it.</p>
+<p class="prose">We wrote several reports during the competition. The most detailed one was the Critical Design Review (CDR), which describes the state of 17 February 2024. The sections below summarise it and the final documentation written after the competition; where the two differ, we give the final value.</p>
 <div class="accordion">
   <details>
     <summary>Structure</summary>
-    <p>We designed the shell in Autodesk Fusion 360. It consists of two half-cylinders with rails on their sides, so they slide together precisely. At the bottom of one half there is a 1 cm hole for the camera lens. The wall, base and lid are 3 mm thick, which proved strong enough in the drop tests. The test shells were printed in white PLA; we planned the final version in bright pink to make it easier to find after landing.</p>
-    <p>The finished CanSat was 110 mm tall, 65 mm in diameter, and had a mass of 305 g (the competition required 300–350 g).</p>
+    <p>We designed the shell in Autodesk Fusion 360. It consists of two half-cylinders with rails on their sides, so they slide together precisely. At the bottom of one half there is a 1 cm hole for the camera lens. The wall, base and lid are 3 mm thick, which proved strong enough in the drop tests. The test shells were printed in white PLA; the final version was made of bright red PLA to make it easier to find after landing.</p>
+    <p>The finished CanSat was 110 mm tall, 66 mm in diameter, and had a mass of 305 g (the competition required 300–350 g).</p>
   </details>
   <details>
     <summary>Electronics and power</summary>
     <p>The controller was an Adafruit Feather M0 Adalogger, which has a built-in SD card reader and can be programmed in the Arduino IDE. The sensors: BMP280 (air pressure and temperature), MPU6050 (acceleration), SCD30 (CO₂) and a NEO-7M GPS. The camera was an SQ11 mini HD camera with its own battery and SD card.</p>
     <p>At first we used RFM69HCW radio modules, but data transmission was not reliable beyond 500 metres, so we switched to RFM95W LoRa modules in the 868 MHz band. Data was sent every second.</p>
-    <p>The planned total consumption was about 78 mA (about 255 mW). With a 3.7 V, 1200 mAh LiPo battery this means roughly 15 hours of operation, well above the approx. 4 hours planned for measuring.</p>
+    <p>Together, the final components drew about 130 mA, with a peak power of about 433 mW. With this load the 3.7 V, 1200 mAh LiPo battery lasted roughly 10 hours, well above the approx. 4 hours planned for measuring.</p>
   </details>
   <details>
     <summary>Parachute and descent</summary>
-    <p>The parachute is roughly a flat octagon with a radius of about 15.8 cm and a hole in the middle for a more stable descent. Calculating with a cautious drag coefficient of 1.1 gave a descent rate of about 7 m/s. We tested its strength with a 6-litre water jug (about 50 N).</p>
+    <p>The parachute is roughly a flat octagon with a radius of about 15.8 cm and a hole in the middle for a more stable descent. Calculating with a cautious drag coefficient of 1.1 gave a descent rate of about 7 m/s. We tested its strength with 9 litres of water, almost twice the required 50 N.</p>
     <p>We did drop tests in the school hall (2 floors), in the university hall (4 floors) and finally from a 10-storey building in Palotakert, Gödöllő. From the change of the height calculated from air pressure we measured an average descent rate of about 7.5 m/s, with an error of about 7%. This fits the competition's 5–12 m/s requirement; the estimated flight time was about 130 s.</p>
   </details>
   <details>
@@ -141,10 +155,11 @@
   </details>
   <details>
     <summary>Costs and outreach</summary>
-    <p>The components, printer filament, cables and parachute material cost about 107 euros in total (the competition limit was 500 euros).</p>
-    <p>We posted about our progress on Instagram, and one of our short videos reached 450 views. At school we organised a programme: our 3D printer was working in the middle of the main hall, by our estimate 300–400 students walked past it, and we gave a talk to those interested.</p>
+    <p>The components, printer filament, cables and parachute material cost about 127 euros in total (the competition limit was 500 euros).</p>
+    <p>We posted about our progress on Instagram, and one of our short videos reached 2,500 views. At school we organised a programme: our 3D printer was working in the middle of the main hall, by our estimate 300–400 students walked past it, and we gave a talk to those interested.</p>
   </details>
 </div>
+<p class="prose" style="margin-top:16px">The CanSat's program code and the image analysis program are public: <a href="https://github.com/mateking0/Seraph-Cansat">github.com/mateking0/Seraph-Cansat</a>.</p>
 
 <h2 id="kepek">Photos</h2>
 <div class="gallery">

@@ -60,7 +60,7 @@
   <div class="prose">
     <p>A panelen két azonos típusú MCP9808 digitális hőmérő van. Az egyiket fekete epoxi (Strongbond 53) borítja, a másikat nagyjából 2 milliméter vastag átlátszó epoxi (Strongbond 110).</p>
     <p>Amikor a műhold a Föld árnyékából kilép a napfényre, a panel melegedni kezd, amikor belép az árnyékba, hűlni. Ezek a hőmérséklet-tranziensek a legérdekesebb szakaszok. Feltételezésünk az volt, hogy a két bevonat más-más módon nyeli el a fényt és adja le a hőt. Ha ez így van, a különbségnek itt kell látszania, és ezt akarjuk pályán megvizsgálni.</p>
-    <p>A fekete bevonatú hőmérő a referencia, az átlátszó epoxi alatti a vizsgált minta. Azt követjük, hogyan változik a kettő különbsége a küldetés elejétől a végéig. Ebből a bevonatok hőtehetetlenségére és az átlátszó epoxi esetleges UV-öregedésére lehet következtetni.</p>
+    <p>A fekete bevonatú hőmérő a referencia, az átlátszó epoxi alatti a vizsgált minta. Azt követjük, hogyan változik a kettő különbsége a küldetés elejétől a végéig. Ebből szeretnénk következtetni a bevonatok hőtehetetlenségére és az átlátszó epoxi esetleges UV-öregedésére.</p>
     <p>A harmadik szenzor egy OPT3002 fénymérő. Ebből látszik, mikor süt a Nap a panelre, és mikor van árnyékban, így a hőmérsékleti görbéken meg tudjuk jelölni az árnyékba lépést és a kilépést.</p>
   </div>
   <figure class="diagram">
@@ -103,7 +103,7 @@
   <tr><th>Fényszenzor</th><td>OPT3002</td></tr>
   <tr><th>Mikrokontroller</th><td>STM32F103 (C8T6)</td></tr>
   <tr><th>Tervezés, fejlesztés</th><td>KiCad (nyák), STM32CubeIDE (program)</td></tr>
-  <tr><th>Mérési ütem</th><td>60 másodpercenként; 2026 szeptemberétől 10 másodperces üzemmódban</td></tr>
+  <tr><th>Mérési ütem</th><td>többnyire 60 másodpercenként; két 2026. januári szakaszban és 2026 szeptemberétől 10 másodpercenként</td></tr>
 </table>
 <p class="prose" style="margin-top:12px">Az MCP9808 egy digitális hőmérő IC: maga méri a hőmérsékletet, és kész számértéket ad tovább a mikrokontrollernek. Nem termoelem.</p>
 
@@ -124,6 +124,9 @@
   </div>
   <figcaption>A panel 3D-terve és a legyártott panelek.</figcaption>
 </figure>
+
+<h3>Amit ma másképp csinálnánk</h3>
+<p class="prose">A mikrokontroller közelebb került a fekete bevonatú hőmérőhöz, mint az átlátszóhoz, és a működése közben termelt kis hő ezért a két hőmérőt nem egyformán melegíti. A mérési rekordokba időbélyeget is tennénk, hogy a mérés ideje ne csak utólag legyen visszaállítható. A két bevonatot pedig azonos méretűre készítenénk, hogy csak az anyaguk különbözzön.</p>
 
 <h2>Tesztelés a földön</h2>
 <div class="split">
