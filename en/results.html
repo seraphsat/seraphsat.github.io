@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Results – Seraph</title>
+<meta name="description" content="Where the evaluation of the Seraph experiment's data stands.">
+<link rel="alternate" hreflang="en" href="results.html">
+<link rel="alternate" hreflang="hu" href="../eredmenyek.html">
+<link rel="icon" href="../assets/img/seraph-logo.png">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script src="../assets/js/nav.js"></script>
+</head>
+<body>
+<a class="skip" href="#tartalom">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="../assets/img/seraph-logo.png" alt="" width="40" height="40">Seraph</a>
+    <div class="header-tools">
+      <a class="lang-switch" href="../eredmenyek.html" hreflang="hu" lang="hu" data-lang="hu" title="Ez az oldal magyarul">Magyar</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experiment.html">The experiment</a></li>
+        <li><a href="hunity.html">HUNITY satellite</a></li>
+        <li><a href="results.html" aria-current="page">Results</a></li>
+        <li><a href="cansat.html">CanSat Hungary</a></li>
+        <li><a href="timeline.html">Timeline</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="tartalom">
+<div class="wrap">
+<h1>Results</h1>
+<p class="notice"><strong>The evaluation is in progress.</strong> We are still working on processing the data Seraph has collected since December 2025. We will publish numerical results once the analysis is complete.</p>
+
+<h2>What already works</h2>
+<div class="prose">
+  <p>The board works well in orbit: both thermometers and the light sensor are measuring. The light sensor clearly shows when the satellite enters the Earth's shadow and when it comes out again, and it even detects the full Moon.</p>
+  <p>Seraph's measurements arrive buffered in the telemetry, so the time a value arrives is not the time it was measured. We developed a method to reconstruct the true time of the measurements from the buffered telemetry. Without it, the temperature curves could not be matched precisely to sunlight and shadow. The reference copy kept on the ground shows the same behaviour.</p>
+</div>
+
+<h2>What we are investigating</h2>
+<div class="prose">
+  <p>The main question is still whether the board heats up and cools down differently under the two coatings as the satellite leaves or enters the shadow. To answer it, the difference between the two thermometers has to be separated from effects that come from the board's own design. The ground reference copy helps with this.</p>
+  <p>In the longer term we would also like to follow whether the clear epoxy changes during the mission, for example because of UV radiation. This needs many more measurements. Since September 2026 the board measures more often (see <a href="experiment.html">The experiment</a>), which will give more data in the future.</p>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Seraph: a thermal experiment on the HUNITY (NMHH-1) PocketQube satellite.</p>
+    <p><a href="https://www.instagram.com/seraph.sat/">Instagram: @seraph.sat</a> · <a href="contact.html">Contact</a></p>
+  </div>
+</footer>
+</body>
+</html>

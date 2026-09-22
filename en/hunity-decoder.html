@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data decoder – HUNITY – Seraph</title>
+<meta name="description" content="The Seraph data decoder draws temperature and light curves from the board's hexadecimal data packets.">
+<link rel="alternate" hreflang="en" href="hunity-decoder.html">
+<link rel="alternate" hreflang="hu" href="../hunity-dekoder.html">
+<link rel="icon" href="../assets/img/seraph-logo.png">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script src="../assets/js/nav.js"></script>
+</head>
+<body>
+<a class="skip" href="#tartalom">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="../assets/img/seraph-logo.png" alt="" width="40" height="40">Seraph</a>
+    <div class="header-tools">
+      <a class="lang-switch" href="../hunity-dekoder.html" hreflang="hu" lang="hu" data-lang="hu" title="Ez az oldal magyarul">Magyar</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experiment.html">The experiment</a></li>
+        <li><a href="hunity.html" aria-current="page">HUNITY satellite</a></li>
+        <li><a href="results.html">Results</a></li>
+        <li><a href="cansat.html">CanSat Hungary</a></li>
+        <li><a href="timeline.html">Timeline</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="tartalom">
+<div class="wrap">
+<h1>The HUNITY (NMHH-1) satellite</h1>
+<nav class="tabs" aria-label="HUNITY subpages">
+  <a href="hunity.html">The satellite</a>
+  <a href="hunity-decoder.html" aria-current="page">Data decoder</a>
+</nav>
+
+<h2 style="margin-top:0">Seraph data decoder</h2>
+<div class="prose">
+  <p>We wrote this small app to quickly visualise Seraph's data. Paste the board's hexadecimal data lines one per line, and the app plots the curves of the two thermometers and the light sensor. The graphs can be shown as points or lines.</p>
+  <p>The app runs on an external server, so the first load can take a while. If it does not appear in the frame below, <a href="https://seraph-hunity-decoder.onrender.com/">open it in a new tab</a>.</p>
+</div>
+<div class="embed" style="margin-top:16px">
+  <iframe src="https://seraph-hunity-decoder.onrender.com/" title="Seraph data decoder" loading="lazy"></iframe>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Seraph: a thermal experiment on the HUNITY (NMHH-1) PocketQube satellite.</p>
+    <p><a href="https://www.instagram.com/seraph.sat/">Instagram: @seraph.sat</a> · <a href="contact.html">Contact</a></p>
+  </div>
+</footer>
+</body>
+</html>

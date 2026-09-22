@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The experiment – Seraph</title>
+<meta name="description" content="Hardware and measurement principle of the Seraph board: two MCP9808 thermometers under black and clear epoxy, an OPT3002 light sensor and an STM32F103 microcontroller.">
+<link rel="alternate" hreflang="en" href="experiment.html">
+<link rel="alternate" hreflang="hu" href="../kiserlet.html">
+<link rel="icon" href="../assets/img/seraph-logo.png">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script src="../assets/js/nav.js"></script>
+</head>
+<body>
+<a class="skip" href="#tartalom">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="../assets/img/seraph-logo.png" alt="" width="40" height="40">Seraph</a>
+    <div class="header-tools">
+      <a class="lang-switch" href="../kiserlet.html" hreflang="hu" lang="hu" data-lang="hu" title="Ez az oldal magyarul">Magyar</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experiment.html" aria-current="page">The experiment</a></li>
+        <li><a href="hunity.html">HUNITY satellite</a></li>
+        <li><a href="results.html">Results</a></li>
+        <li><a href="cansat.html">CanSat Hungary</a></li>
+        <li><a href="timeline.html">Timeline</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="tartalom">
+<div class="wrap">
+<h1>The experiment</h1>
+<p class="lead">Our question is simple: if two identical thermometers are covered by two different coatings, do they react differently to sunlight and shadow in space?</p>
+
+<h2>What we measure</h2>
+<div class="split">
+  <div class="prose">
+    <p>The board carries two MCP9808 digital thermometers of the same type. One is covered with black epoxy (Strongbond 53), the other with a layer of clear epoxy about 2 millimetres thick (Strongbond 110).</p>
+    <p>When the satellite comes out of the Earth's shadow into sunlight, the board starts to warm up, and when it enters the shadow, it cools down. These temperature transients are the most interesting parts of the data. Our hypothesis was that the two coatings absorb light and give off heat differently. If so, the difference should show up here, and this is what we want to investigate in orbit.</p>
+    <p>The thermometer under black epoxy is the reference, the one under clear epoxy is the sample we study. We follow how the difference between the two changes from the beginning to the end of the mission. From this we can learn about the thermal inertia of the coatings and about possible UV ageing of the clear epoxy.</p>
+    <p>The third sensor is an OPT3002 light sensor. It shows when the Sun shines on the board and when it is in shadow, so we can mark the shadow entries and exits on the temperature curves.</p>
+  </div>
+  <figure class="diagram">
+    <svg viewBox="0 0 400 260" role="img" aria-labelledby="svg-t svg-d">
+      <title id="svg-t">Sketch of the Seraph board</title>
+      <desc id="svg-d">Two thermometers sit on the green circuit board: one is covered with black epoxy, the other with clear epoxy. Next to them are the light sensor and the microcontroller. Sunlight falls on the board from above.</desc>
+      <g stroke="#e0a100" stroke-width="3" stroke-linecap="round">
+        <line x1="70" y1="18" x2="95" y2="70"/><line x1="160" y1="18" x2="175" y2="70"/><line x1="250" y1="18" x2="255" y2="70"/>
+      </g>
+      <text x="300" y="34" font-size="14" fill="#7a5a00">sunlight</text>
+      <rect x="20" y="150" width="360" height="22" rx="4" fill="#2f7d4f"/>
+      <text x="200" y="198" font-size="13" text-anchor="middle" fill="#1a2233">printed circuit board (45 × 30 × 3 mm)</text>
+      <rect x="62" y="138" width="36" height="12" fill="#555"/>
+      <path d="M48 150 Q80 96 112 150 Z" fill="#111"/>
+      <text x="80" y="228" font-size="12" text-anchor="middle" fill="#1a2233">MCP9808</text>
+      <text x="80" y="244" font-size="12" text-anchor="middle" fill="#566074">black epoxy</text>
+      <line x1="80" y1="150" x2="80" y2="214" stroke="#999" stroke-dasharray="3 3"/>
+      <rect x="152" y="138" width="36" height="12" fill="#555"/>
+      <path d="M138 150 Q170 104 202 150 Z" fill="#9fd3f5" fill-opacity=".55" stroke="#5aa9dc"/>
+      <text x="170" y="228" font-size="12" text-anchor="middle" fill="#1a2233">MCP9808</text>
+      <text x="170" y="244" font-size="12" text-anchor="middle" fill="#566074">clear epoxy, ~2 mm</text>
+      <line x1="170" y1="150" x2="170" y2="214" stroke="#999" stroke-dasharray="3 3"/>
+      <rect x="238" y="140" width="20" height="10" fill="#444"/>
+      <text x="248" y="228" font-size="12" text-anchor="middle" fill="#1a2233">OPT3002</text>
+      <line x1="248" y1="150" x2="248" y2="214" stroke="#999" stroke-dasharray="3 3"/>
+      <rect x="290" y="132" width="56" height="18" fill="#333"/>
+      <text x="318" y="228" font-size="12" text-anchor="middle" fill="#1a2233">STM32F103</text>
+      <line x1="318" y1="150" x2="318" y2="214" stroke="#999" stroke-dasharray="3 3"/>
+    </svg>
+    <figcaption>Sketch, not to scale.</figcaption>
+  </figure>
+</div>
+
+<h2>The board</h2>
+<table class="facts">
+  <tr><th>Size</th><td>45 × 30 × 3 mm</td></tr>
+  <tr><th>Mass</th><td>5.5 g</td></tr>
+  <tr><th>Location on the satellite</th><td>HUNITY's deployable experiment panel</td></tr>
+  <tr><th>Thermometers</th><td>2 × MCP9808 digital thermometer (one under black epoxy, one under ~2 mm clear epoxy)</td></tr>
+  <tr><th>Light sensor</th><td>OPT3002</td></tr>
+  <tr><th>Microcontroller</th><td>STM32F103 (C8T6)</td></tr>
+  <tr><th>Design tools</th><td>KiCad (PCB), STM32CubeIDE (firmware)</td></tr>
+  <tr><th>Sampling</th><td>every 60 seconds; 10-second mode since September 2026</td></tr>
+</table>
+<p class="prose" style="margin-top:12px">The MCP9808 is a digital thermometer IC: it measures the temperature itself and passes a ready-made value to the microcontroller. It is not a thermocouple.</p>
+
+<h2>How it was built</h2>
+<p class="prose">We designed the PCB in KiCad and wrote the firmware in STM32CubeIDE. The board has a separate connector for programming and debugging, and another one through which it talks to the satellite. We tested the first programs on a breadboard with the parts wired together.</p>
+<figure style="margin-top:16px">
+  <img class="photo" src="../assets/img/seraph-panel-kozeli.jpg" alt="Close-up of the finished Seraph board: top left the U4 thermometer under clear epoxy, top right the U2 thermometer under black epoxy, the microcontroller below, and the team members' names on the PCB" loading="lazy" width="1264" height="848">
+  <figcaption>The finished board. Top left: the thermometer under clear epoxy (U4); top right: the one under black epoxy (U2).</figcaption>
+</figure>
+<div class="grid grid-2" style="margin-top:16px">
+  <figure><img class="photo" src="../assets/img/nyak-terv.jpg" alt="The Seraph PCB layout in the KiCad editor, with layers and component labels" loading="lazy" width="1400" height="693"><figcaption>The PCB layout in KiCad.</figcaption></figure>
+  <figure><img class="photo" src="../assets/img/proba-panel.jpg" alt="The Seraph board connected to a breadboard with many wires on a desk" loading="lazy" width="1200" height="900"><figcaption>Programming and testing on a breadboard.</figcaption></figure>
+</div>
+<figure style="margin-top:20px">
+  <div class="grid grid-2">
+    <img class="photo" src="../assets/img/seraph-panel-3d.png" alt="3D design model of the Seraph board, with the team members' names and the text Seraph Premi on the PCB" loading="lazy" width="800" height="616">
+    <img class="photo" src="../assets/img/seraph-panelek.jpg" alt="Four finished Seraph boards side by side in a plastic box" loading="lazy" width="800" height="464">
+  </div>
+  <figcaption>The 3D design of the board and the manufactured boards.</figcaption>
+</figure>
+
+<h2>Testing on the ground</h2>
+<div class="split">
+  <div class="prose">
+    <p>We also tested the finished boards in extreme conditions. In December 2024 we put them in an industrial freezer in a laboratory of the Hungarian University of Agriculture and Life Sciences (MATE), where the lowest temperature was −35.5 °C. We also tested the boards in an oven at 100 °C. We compared the sensor readings with calibrated instruments, and measured the board's mass and its current draw at idle and at maximum load, to show that it meets the satellite's requirements.</p>
+    <p>While testing the light sensor we also answered an old question: yes, the light inside the fridge really does turn off when you close the door.</p>
+    <p>The board in orbit has a reference copy on the ground. It lets us check whether certain features of the data from space come from the board's own operation.</p>
+  </div>
+  <div class="grid grid-2 grid--tall">
+    <figure>
+      <img class="photo" src="../assets/img/fagyaszto-teszt.jpg" alt="Inside a freezer with a wire shelf, the wired-up board at the bottom" loading="lazy" width="900" height="1200">
+      <figcaption>The board in the freezer.</figcaption>
+    </figure>
+    <figure>
+      <img class="photo" src="../assets/img/hideg-teszt-homero.jpg" alt="Display of a handheld ALMEMO measuring instrument" loading="lazy" width="600" height="800">
+      <figcaption>Measuring instrument during the test.</figcaption>
+    </figure>
+  </div>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Seraph: a thermal experiment on the HUNITY (NMHH-1) PocketQube satellite.</p>
+    <p><a href="https://www.instagram.com/seraph.sat/">Instagram: @seraph.sat</a> · <a href="contact.html">Contact</a></p>
+  </div>
+</footer>
+</body>
+</html>

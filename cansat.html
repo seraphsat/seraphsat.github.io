@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CanSat Hungary 2024 – Seraph</title>
+<meta name="description" content="A Seraph csapat 2024-es CanSat Hungary projektje: légnyomás- és hőmérsékletmérés, CO₂-mérés és a zöld területek aránya képelemzéssel.">
+<link rel="alternate" hreflang="hu" href="cansat.html">
+<link rel="alternate" hreflang="en" href="en/cansat.html">
+<link rel="icon" href="assets/img/seraph-logo.png">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/nav.js"></script>
+</head>
+<body>
+<a class="skip" href="#tartalom">Ugrás a tartalomra</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/img/seraph-logo.png" alt="" width="40" height="40">Seraph</a>
+    <div class="header-tools">
+      <a class="lang-switch" href="en/cansat.html" hreflang="en" lang="en" data-lang="en" title="Az oldal angolul">English</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menü</button>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="Fő navigáció">
+      <ul>
+        <li><a href="index.html">Kezdőlap</a></li>
+        <li><a href="kiserlet.html">A kísérlet</a></li>
+        <li><a href="hunity.html">HUNITY műhold</a></li>
+        <li><a href="eredmenyek.html">Eredmények</a></li>
+        <li><a href="cansat.html" aria-current="page">CanSat Hungary</a></li>
+        <li><a href="hirek.html">Idővonal</a></li>
+        <li><a href="csapat.html">Csapat</a></li>
+        <li><a href="kapcsolat.html">Kapcsolat</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="tartalom">
+<div class="wrap">
+<h1>CanSat Hungary 2024</h1>
+<p class="lead">A Seraph csapat a CanSat Hungary 2024 versenyre alakult. Itt gyűjtöttük össze, mit építettünk, és mi történt a verseny alatt.</p>
+
+<h2>Mi az a CanSat?</h2>
+<div class="prose">
+  <p>A CanSat egy üdítősdoboz méretű és alakú „műhold”. A diákoknak ebbe a kis térfogatba kell beépíteniük mindazt, ami egy igazi műholdban is megvan: tápellátást, szenzorokat és rádiós kommunikációt. A kész CanSat-ot rakéta viszi fel nagyjából egy kilométer magasra (vagy platformról, drónról, kikötött ballonról ejtik le), és ereszkedés közben végzi el a feladatát.</p>
+  <p>Minden csapatnak két küldetése van. Az elsődleges mindenkinek kötelező: a légnyomást és a levegő hőmérsékletét legalább másodpercenként meg kell mérni és rádión le kell küldeni. A másodlagos küldetést a csapat maga találja ki.</p>
+  <p class="credit">Forrás: <a href="https://www.esa.int/Education/Teachers_Corner/Build_your_can-sized_satellite_with_CanSat_2024-2025">ESA, Build your can-sized satellite with CanSat</a></p>
+</div>
+
+<h2>A mi CanSat-unk</h2>
+<div class="split">
+  <div class="prose">
+    <p>A szenzorokat és a mikrokontrollert egy nyomtatott áramkörre forrasztottuk, az egészet pedig 3D nyomtatott ház védte az indítás és az ereszkedés alatt. A tápellátásról egyetlen akkumulátor gondoskodott, amely legalább négy órán át bírta. Az ereszkedést ejtőernyő fékezte.</p>
+    <table class="facts">
+      <tr><th>Légnyomás és hőmérséklet</th><td>BMP280</td></tr>
+      <tr><th>Szén-dioxid</th><td>SCD30 (kétmásodpercenként mér)</td></tr>
+      <tr><th>Kamera</th><td>mini HD kamera, lefelé néz</td></tr>
+      <tr><th>Helymeghatározás</th><td>GPS-modul a leszállás utáni megtaláláshoz</td></tr>
+      <tr><th>Adattárolás</th><td>SD-kártya</td></tr>
+      <tr><th>Rádió</th><td>másodpercenkénti adatküldés a földi állomásra</td></tr>
+    </table>
+  </div>
+  <div class="grid grid-2 grid--tall">
+    <figure><img class="photo" src="assets/img/cansat-szerkezet.jpg" alt="Piros, 3D nyomtatott CanSat-váz, benne függőlegesen álló áramköri lap" loading="lazy" width="600" height="800"><figcaption>A váz és a panel.</figcaption></figure>
+    <figure><img class="photo" src="assets/img/cansat-alaplap.jpg" alt="A CanSat forrasztott alaplapja GPS-antennával és rádiómodullal" loading="lazy" width="326" height="435"><figcaption>A kész alaplap.</figcaption></figure>
+  </div>
+</div>
+
+<h3>Elsődleges küldetés</h3>
+<p class="prose">A BMP280 szenzor az ereszkedés alatt mérte a légnyomást és a hőmérsékletet. Az adatok az SD-kártyára kerültek, és rádión másodpercenként a földi állomásra is eljutottak.</p>
+
+<h3>Másodlagos küldetés: CO₂ és növényzet</h3>
+<div class="prose">
+  <p>A kérdésünk az volt, hogy összefügg-e a levegő szén-dioxid-szintje azzal, mennyi növényzet van alatta a földön. Ehhez két dolgot mértünk egyszerre.</p>
+  <p>Az SCD30 precíziós CO₂-szenzor kétmásodpercenként ad értéket. Az infravörös fény elnyelésén alapul: egy speciális hullámhosszú infravörös LED és egy detektor méri, mennyi fényt nyel el a CO₂. Ezért viszonylag gyors és megbízható, és I2C-buszon egyszerűen kiolvasható. Abból indultunk ki, hogy a szén-dioxid (moláris tömege 44 g/mol) nehezebb a levegőnél (átlagosan 29 g/mol), ezért függőleges irányban felfelé csökkenhet a koncentrációja.</p>
+  <p>A CanSat alján lévő kamera végig videót rögzített az ereszkedésről, így különböző magasságokból kaptunk képeket. A magasságot a légnyomásból tudtuk becsülni. A képeken a zöld területek (fák, bokrok, fű) arányát egy saját tanítású mesterséges intelligencia határozta meg.</p>
+  <p>A tanítóadatokat kézzel gyűjtöttük: RGB-színválasztó oldalakon véletlenszerű színeket néztünk meg, és szemre eldöntöttük, zöldnek számít-e. Összesen 680 mintát gyűjtöttünk. Tesztelés után a pontosság kb. 91,9% lett. Mivel szándékosan több természetben előforduló színt adtunk a modellnek, a valódi felvételeken kb. 99%-os pontosságra számítottunk.</p>
+  <p>A célunk az volt, hogy megmutassuk: a CO₂ mennyisége összefügg az alatta lévő növényzet mennyiségével. Ezzel az erdőirtásra és az üvegházhatású gázok növekvő mennyiségére is szerettük volna felhívni a figyelmet.</p>
+</div>
+<div class="grid grid-2 grid--fit" style="margin-top:12px">
+  <figure><img class="photo" src="assets/img/ai-alkalmazas.png" alt="A képelemző program ablaka: egy növényről készült fotón a zöld képpontok arányát írja ki" loading="lazy" width="1100" height="580"><figcaption>A képelemző program egy tesztképpel.</figcaption></figure>
+  <figure><img class="photo" src="assets/img/ai-kod.png" alt="Python kódrészlet a képelemző programból" loading="lazy" width="781" height="444"><figcaption>Részlet a program kódjából.</figcaption></figure>
+</div>
+
+<h2>A verseny</h2>
+<div class="prose">
+  <p>2024 márciusában egy MWAIN („Meeting without an interesting name”) fedőnevű találkozón megkaptuk a döntős érmet, vagyis bejutottunk a CanSat Hungary döntőjébe. Március végén leadtuk az indítás előtti jelentést (PLR), közben elkészült az alaplap, a Palotakertben dobópróbákkal ellenőriztük a szerkezetet, egy ejtési teszten pedig az ejtőernyőt is.</p>
+  <p>A 2024. április 6-i döntőn a csapat tudományos különdíjat kapott (Scientific Award), és meghívást az ESA ESERO-programjának magyarországi indulására. <a href="https://www.urvilag.hu/magyar_korszeru_oktatas/20240409_cansat_hungary_2024_%E2%80%93_donto">Az Űrvilág beszámolója a döntőről</a> · <a href="https://iskola.premontrei.hu/hirek/cansat-verseny">Az iskola cikke</a></p>
+  <p>2024 májusában az <a href="https://eserohu.hu/">ESERO Hungary</a> megnyitóján be is mutathattuk a projektet, az iskola előző évi CanSat-csapatával, a PreSattal együtt.</p>
+  <p>A CanSat-munkából TDK-dolgozat készült a MATE-n. A <a href="https://uni-mate.hu/h%C3%ADr/-/content-viewer/m%C3%A9lt%C3%A1n-lehetnek-b%C3%BCszk%C3%A9k-a-tdk-r%C3%A9sztvev%C5%91i/20123">2024. november 20-i Intézményi Tudományos Diákköri Konferencián</a> az Anyag-, Ipari technológia és Mechatronika szekcióban 2. helyezést értünk el (Magó Máté, Horel Anna, Csaba Zsigmond). Ezzel továbbjutottunk a <a href="https://otdk.hu/otdk-archivum/korabbi-otdk-k/37-otdk/szekciok-felhivasai/muszaki-tudomanyi-szekcio/">37. OTDK Műszaki Tudományi Szekciójába</a>, ahol 2025. április 23–25. között a Debreceni Egyetem Műszaki Karán adtuk elő a munkát.</p>
+</div>
+<div class="grid grid-3 grid--fit" style="margin-top:12px">
+  <figure><img class="photo" src="assets/img/dontos-erem.jpg" alt="Piros, 3D nyomtatott érem Finalist és CanSat Hungary 2024 felirattal" loading="lazy" width="700" height="688"><figcaption>A döntős érem.</figcaption></figure>
+  <figure><img class="photo" src="assets/img/dontos-dij-csapat.jpg" alt="Három csapattag a CanSat Hungary molinó előtt" loading="lazy" width="519" height="292"><figcaption>A döntőn.</figcaption></figure>
+  <figure><img class="photo" src="assets/img/dij-trofea.png" alt="Arany színű, üdítősdoboz formájú trófea CanSat Hungary felirattal" loading="lazy" width="253" height="313"><figcaption>Arany doboz CanSat Hungary felirattal.</figcaption></figure>
+</div>
+
+<h2>Dokumentáció</h2>
+<p class="prose">A verseny során több jelentést is írtunk. A legrészletesebb a kritikus tervezési jelentés (Critical Design Review, CDR) volt, amely a 2024. február 17-i állapotot írja le. Az alábbi szakaszok ennek a rövid összefoglalói.</p>
+<div class="accordion">
+  <details>
+    <summary>Szerkezet</summary>
+    <p>A házat Autodesk Fusion 360-ban terveztük. Két félhengerből áll, amelyek oldalán sínek vannak, így pontosan egymásba csúsznak. Az egyik félhenger alján 1 cm átmérőjű nyílás van a kamera lencséjének. A fal, az alj és a fedél 3 mm vastag, ez az ejtési próbákon elég erősnek bizonyult. A tesztházak fehér PLA-ból készültek; a végleges változatot élénk rózsaszínre terveztük, hogy leszállás után könnyebb legyen megtalálni.</p>
+    <p>A kész CanSat 110 mm magas, 65 mm átmérőjű, tömege 305 g volt (a verseny előírása 300–350 g).</p>
+  </details>
+  <details>
+    <summary>Elektronika és energia</summary>
+    <p>A vezérlő egy Adafruit Feather M0 Adalogger volt, amelyen beépített SD-kártya-olvasó is van, és Arduino IDE-ben programozható. A szenzorok: BMP280 (légnyomás és hőmérséklet), MPU6050 (gyorsulás), SCD30 (CO₂), NEO-7M GPS. A kamera egy SQ11 típusú mini HD kamera saját akkumulátorral és SD-kártyával.</p>
+    <p>Rádiónak először RFM69HCW modulokat használtunk, de ezekkel 500 méternél nagyobb távolságon nem volt megbízható az adatátvitel, ezért RFM95W LoRa modulra váltottunk, 868 MHz-es sávban. Az adatküldés másodpercenként történt.</p>
+    <p>A tervezett teljes fogyasztás kb. 78 mA (kb. 255 mW) volt. Egy 3,7 V-os, 1200 mAh-s LiPo akkumulátorral ez nagyjából 15 óra működést jelent, bőven több, mint a mérésre tervezett kb. 4 óra.</p>
+  </details>
+  <details>
+    <summary>Ejtőernyő és ereszkedés</summary>
+    <p>Az ejtőernyő nagyjából lapos nyolcszög alakú, kb. 15,8 cm sugarú, a közepén egy lyukkal a stabilabb ereszkedésért. Óvatos, 1,1-es légellenállási együtthatóval számolva kb. 7 m/s-os süllyedési sebesség jött ki. A teherbírását egy 6 literes vizeskannával (kb. 50 N) próbáltuk ki.</p>
+    <p>Ejtési próbákat az iskola aulájában (2 emelet), az egyetem aulájában (4 emelet), végül a gödöllői Palotakertben egy 10 emeletes házról végeztünk. A légnyomásból számolt magasság változásából átlagosan kb. 7,5 m/s süllyedési sebességet mértünk, kb. 7% hibával. Ez belefér a verseny 5–12 m/s-os előírásába, a becsült repülési idő kb. 130 s.</p>
+  </details>
+  <details>
+    <summary>Szenzorok kalibrálása</summary>
+    <p>A BMP280 légnyomásmérését egy lezárt befőttesüvegben, vákuumszivattyúval csökkentett nyomáson vetettük össze egy Greisinger GTD 1100 műszerrel: az eltérés csak 3 Pa volt. A hőmérsékletet −20 °C és 25 °C között ellenőriztük (fagyasztó, hűtő, szobahőmérséklet), itt −1,5 °C-os eltolást találtunk, amelyet a program korrigál.</p>
+    <p>A CO₂-szenzornál először egy Adafruit CCS811-et próbáltunk, de 600 ppm alatt nem mért megbízhatóan. Az SCD30-at a MATE környezetmérnöki laborjától kölcsönkapott ALMEMO 2590 adatgyűjtővel és hitelesített CO₂-szenzorral vetettük össze egy lezárt akváriumban. Az érzékenysége megegyezett a referenciáéval, a 213 ppm-es eltolást a program korrigálja.</p>
+    <p>A növényzet felismeréséhez egy Ocean Optics USB2000+ spektrométerrel (400–1050 nm) megmértük a természetes fény és a különböző növényekről visszavert fény spektrumát. A klorofill minden levélnél jellegzetes „völgyet” okoz a spektrumban, erre épült a képelemzés.</p>
+  </details>
+  <details>
+    <summary>Földi állomás</summary>
+    <p>A földi állomás egy laptop volt, rákötve egy Arduino Uno és ugyanolyan RFM95W rádió, mint a CanSat-ban. Az Arduino csak továbbította az adatokat, a feldolgozás a laptopon futott, például az Excel Data Streamer bővítményével, amely élőben táblázatba és grafikonra teszi az értékeket.</p>
+  </details>
+  <details>
+    <summary>Költségek és ismeretterjesztés</summary>
+    <p>Az alkatrészek, a nyomtatószál, a kábelek és az ejtőernyő anyaga együtt kb. 107 euróba kerültek (a verseny felső határa 500 euró volt).</p>
+    <p>Az Instagram-oldalunkon folyamatosan beszámoltunk a munkáról, az egyik rövid videónk 450 megtekintést ért el. Az iskolában programot szerveztünk: a 3D nyomtatónk az aula közepén dolgozott, becslésünk szerint 300–400 diák ment el mellette, és az érdeklődőknek előadást is tartottunk.</p>
+  </details>
+</div>
+
+<h2 id="kepek">Képek</h2>
+<div class="gallery">
+  <img src="assets/img/projekt-indul.jpg" alt="Instagram-kollázs Project underway felirattal: kód a képernyőn és az első szenzorok" loading="lazy" width="450" height="800">
+  <img src="assets/img/szenzorteszt.jpg" alt="Sok színes vezetékkel összekötött szenzorok és fejlesztőpanel az asztalon" loading="lazy" width="600" height="800">
+  <img src="assets/img/co2-teszt.jpg" alt="Befőttesüveg, benne egy kis áramkör, mellette vezetékekkel bekötött vezérlőpanel" loading="lazy" width="800" height="450">
+  <img src="assets/img/noveny-teszt.jpg" alt="Szobanövény levelei; ugyanez a növény látszik a képelemző program tesztképén" loading="lazy" width="800" height="450">
+  <img src="assets/img/cansat-ejtoernyo-teszt.jpg" alt="Csapattag ejtőernyőt tart, alatta vízzel töltött vödör terhelésként" loading="lazy" width="600" height="800">
+  <img src="assets/img/cansat-belseje.jpg" alt="Kézben tartott, félig nyitott CanSat, benne az áramkörök és a becsomagolt ejtőernyő" loading="lazy" width="600" height="800">
+  <img src="assets/img/forrasztas-1.jpg" alt="Csapattag forraszt egy iskolai szertárban" loading="lazy" width="600" height="800">
+  <img src="assets/img/cansat-panel-gps.jpg" alt="Az alaplap GPS-antennával, SD-kártya-olvasóval és rádiómodullal" loading="lazy" width="600" height="800">
+  <img src="assets/img/cansat-panel-laptop.jpg" alt="Laptopra kötött prototípus-panel mérés közben" loading="lazy" width="600" height="800">
+  <img src="assets/img/cansat-prototipus.jpg" alt="Próbapanel sok színes vezetékkel és GPS-antennával" loading="lazy" width="600" height="800">
+  <img src="assets/img/cansat-belso-kozeli.jpg" alt="Közeli kép a CanSat belsejéről, a ház piros fala mellett az áramkör" loading="lazy" width="600" height="800">
+  <img src="assets/img/nyomtatas-1.jpg" alt="3D nyomtató piros hengert nyomtat, a tálcán vezetékek" loading="lazy" width="600" height="800">
+  <img src="assets/img/csapatpolo.jpg" alt="Fekete csapatpóló Seraph logóval és CanSat Hungary 2024 felirattal" loading="lazy" width="800" height="800">
+  <img src="assets/img/esero-csoportkep.jpg" alt="Csoportkép a Seraph és a PreSat csapat tagjaival az ESERO Hungary megnyitóján" loading="lazy" width="800" height="533">
+  <img src="assets/img/esero-1.jpg" alt="A csapat előadása az ESERO Hungary megnyitóján, előtérben a közönség" loading="lazy" width="800" height="533">
+  <img src="assets/img/esero-2.jpg" alt="Két csapattag beszél a színpadon az ESERO Hungary megnyitóján" loading="lazy" width="800" height="533">
+  <img src="assets/img/esero-3.jpg" alt="Csapattag áll a színpadon az ESERO és ESA feliratú molinó mellett" loading="lazy" width="800" height="533">
+</div>
+<p class="credit">Az ESERO-megnyitó fotói: Design Terminal.</p>
+
+<h2>A CanSat-projekt támogatói</h2>
+<p class="prose">A CanSat-projektet az iskolánk, a gödöllői Premontrei Szent Norbert Gimnázium és a mellette lévő Magyar Agrár- és Élettudományi Egyetem támogatta. Az egyetem műhelyében 3D nyomtathattunk, forraszthattunk, és a szenzorainkat az ottani műszerekkel kalibrálhattuk. A logók a <a href="index.html">kezdőlapon</a> láthatók.</p>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Seraph: hőmérsékleti kísérlet a HUNITY (NMHH-1) PocketQube műholdon.</p>
+    <p><a href="https://www.instagram.com/seraph.sat/">Instagram: @seraph.sat</a> · <a href="kapcsolat.html">Kapcsolat</a></p>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A kísérlet – Seraph</title>
+<meta name="description" content="A Seraph panel hardvere és mérési elve: két MCP9808 hőmérő fekete és átlátszó epoxi alatt, OPT3002 fényszenzor, STM32F103 mikrokontroller.">
+<link rel="alternate" hreflang="hu" href="kiserlet.html">
+<link rel="alternate" hreflang="en" href="en/experiment.html">
+<link rel="icon" href="assets/img/seraph-logo.png">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/nav.js"></script>
+</head>
+<body>
+<a class="skip" href="#tartalom">Ugrás a tartalomra</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/img/seraph-logo.png" alt="" width="40" height="40">Seraph</a>
+    <div class="header-tools">
+      <a class="lang-switch" href="en/experiment.html" hreflang="en" lang="en" data-lang="en" title="Az oldal angolul">English</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menü</button>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="Fő navigáció">
+      <ul>
+        <li><a href="index.html">Kezdőlap</a></li>
+        <li><a href="kiserlet.html" aria-current="page">A kísérlet</a></li>
+        <li><a href="hunity.html">HUNITY műhold</a></li>
+        <li><a href="eredmenyek.html">Eredmények</a></li>
+        <li><a href="cansat.html">CanSat Hungary</a></li>
+        <li><a href="hirek.html">Idővonal</a></li>
+        <li><a href="csapat.html">Csapat</a></li>
+        <li><a href="kapcsolat.html">Kapcsolat</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="tartalom">
+<div class="wrap">
+<h1>A kísérlet</h1>
+<p class="lead">A kérdésünk egyszerű: ha két egyforma hőmérőt kétféle bevonat takar, másképp reagálnak-e a napfényre és az árnyékra a világűrben?</p>
+
+<h2>Mit mérünk</h2>
+<div class="split">
+  <div class="prose">
+    <p>A panelen két azonos típusú MCP9808 digitális hőmérő van. Az egyiket fekete epoxi (Strongbond 53) borítja, a másikat nagyjából 2 milliméter vastag átlátszó epoxi (Strongbond 110).</p>
+    <p>Amikor a műhold a Föld árnyékából kilép a napfényre, a panel melegedni kezd, amikor belép az árnyékba, hűlni. Ezek a hőmérséklet-tranziensek a legérdekesebb szakaszok. Feltételezésünk az volt, hogy a két bevonat más-más módon nyeli el a fényt és adja le a hőt. Ha ez így van, a különbségnek itt kell látszania, és ezt akarjuk pályán megvizsgálni.</p>
+    <p>A fekete bevonatú hőmérő a referencia, az átlátszó epoxi alatti a vizsgált minta. Azt követjük, hogyan változik a kettő különbsége a küldetés elejétől a végéig. Ebből a bevonatok hőtehetetlenségére és az átlátszó epoxi esetleges UV-öregedésére lehet következtetni.</p>
+    <p>A harmadik szenzor egy OPT3002 fénymérő. Ebből látszik, mikor süt a Nap a panelre, és mikor van árnyékban, így a hőmérsékleti görbéken meg tudjuk jelölni az árnyékba lépést és a kilépést.</p>
+  </div>
+  <figure class="diagram">
+    <svg viewBox="0 0 400 260" role="img" aria-labelledby="svg-t svg-d">
+      <title id="svg-t">A Seraph panel vázlata</title>
+      <desc id="svg-d">A zöld nyomtatott áramkörön két hőmérő ül: az egyiket fekete, a másikat átlátszó epoxi borítja. Mellettük a fényszenzor és a mikrokontroller. Felülről napfény éri a panelt.</desc>
+      <g stroke="#e0a100" stroke-width="3" stroke-linecap="round">
+        <line x1="70" y1="18" x2="95" y2="70"/><line x1="160" y1="18" x2="175" y2="70"/><line x1="250" y1="18" x2="255" y2="70"/>
+      </g>
+      <text x="300" y="34" font-size="14" fill="#7a5a00">napfény</text>
+      <rect x="20" y="150" width="360" height="22" rx="4" fill="#2f7d4f"/>
+      <text x="200" y="198" font-size="13" text-anchor="middle" fill="#1a2233">nyomtatott áramkör (45 × 30 × 3 mm)</text>
+      <rect x="62" y="138" width="36" height="12" fill="#555"/>
+      <path d="M48 150 Q80 96 112 150 Z" fill="#111"/>
+      <text x="80" y="228" font-size="12" text-anchor="middle" fill="#1a2233">MCP9808</text>
+      <text x="80" y="244" font-size="12" text-anchor="middle" fill="#566074">fekete epoxi</text>
+      <line x1="80" y1="150" x2="80" y2="214" stroke="#999" stroke-dasharray="3 3"/>
+      <rect x="152" y="138" width="36" height="12" fill="#555"/>
+      <path d="M138 150 Q170 104 202 150 Z" fill="#9fd3f5" fill-opacity=".55" stroke="#5aa9dc"/>
+      <text x="170" y="228" font-size="12" text-anchor="middle" fill="#1a2233">MCP9808</text>
+      <text x="170" y="244" font-size="12" text-anchor="middle" fill="#566074">átlátszó epoxi, ~2 mm</text>
+      <line x1="170" y1="150" x2="170" y2="214" stroke="#999" stroke-dasharray="3 3"/>
+      <rect x="238" y="140" width="20" height="10" fill="#444"/>
+      <text x="248" y="228" font-size="12" text-anchor="middle" fill="#1a2233">OPT3002</text>
+      <line x1="248" y1="150" x2="248" y2="214" stroke="#999" stroke-dasharray="3 3"/>
+      <rect x="290" y="132" width="56" height="18" fill="#333"/>
+      <text x="318" y="228" font-size="12" text-anchor="middle" fill="#1a2233">STM32F103</text>
+      <line x1="318" y1="150" x2="318" y2="214" stroke="#999" stroke-dasharray="3 3"/>
+    </svg>
+    <figcaption>Vázlat, nem méretarányos.</figcaption>
+  </figure>
+</div>
+
+<h2>A panel</h2>
+<table class="facts">
+  <tr><th>Méret</th><td>45 × 30 × 3 mm</td></tr>
+  <tr><th>Tömeg</th><td>5,5 g</td></tr>
+  <tr><th>Hely a műholdon</th><td>a HUNITY kinyíló kísérleti panelje</td></tr>
+  <tr><th>Hőmérők</th><td>2 db MCP9808 digitális hőmérő (az egyik fekete epoxi, a másik ~2 mm átlátszó epoxi alatt)</td></tr>
+  <tr><th>Fényszenzor</th><td>OPT3002</td></tr>
+  <tr><th>Mikrokontroller</th><td>STM32F103 (C8T6)</td></tr>
+  <tr><th>Tervezés, fejlesztés</th><td>KiCad (nyák), STM32CubeIDE (program)</td></tr>
+  <tr><th>Mérési ütem</th><td>60 másodpercenként; 2026 szeptemberétől 10 másodperces üzemmódban</td></tr>
+</table>
+<p class="prose" style="margin-top:12px">Az MCP9808 egy digitális hőmérő IC: maga méri a hőmérsékletet, és kész számértéket ad tovább a mikrokontrollernek. Nem termoelem.</p>
+
+<h2>Hogyan készült</h2>
+<p class="prose">A nyákot KiCadben terveztük, a programot STM32CubeIDE-ben írtuk. A panelen külön csatlakozó van a programozáshoz és a hibakereséshez, egy másikon keresztül pedig a műholddal kommunikál. Az első programokat próbapanelen, vezetékekkel összekötött alkatrészekkel teszteltük.</p>
+<figure style="margin-top:16px">
+  <img class="photo" src="assets/img/seraph-panel-kozeli.jpg" alt="A kész Seraph panel közelről: bal fent az átlátszó epoxival fedett U4 hőmérő, jobb fent a fekete epoxival fedett U2 hőmérő, lent a mikrokontroller, a nyákon a csapattagok neve" loading="lazy" width="1264" height="848">
+  <figcaption>A kész panel. Bal fent az átlátszó epoxi alatti hőmérő (U4), jobb fent a fekete epoxi alatti (U2).</figcaption>
+</figure>
+<div class="grid grid-2" style="margin-top:16px">
+  <figure><img class="photo" src="assets/img/nyak-terv.jpg" alt="A Seraph nyák terve a KiCad szerkesztőjében, rétegekkel és alkatrészjelölésekkel" loading="lazy" width="1400" height="693"><figcaption>A nyák terve KiCadben.</figcaption></figure>
+  <figure><img class="photo" src="assets/img/proba-panel.jpg" alt="A Seraph panel egy próbapanelre kötve, sok vezetékkel az asztalon" loading="lazy" width="1200" height="900"><figcaption>Programozás és tesztelés próbapanelen.</figcaption></figure>
+</div>
+<figure style="margin-top:20px">
+  <div class="grid grid-2">
+    <img class="photo" src="assets/img/seraph-panel-3d.png" alt="A Seraph panel háromdimenziós tervezői modellje, a nyákon a csapattagok neve és a Seraph Premi felirat" loading="lazy" width="800" height="616">
+    <img class="photo" src="assets/img/seraph-panelek.jpg" alt="Négy elkészült Seraph panel egymás mellett egy műanyag dobozban" loading="lazy" width="800" height="464">
+  </div>
+  <figcaption>A panel 3D-terve és a legyártott panelek.</figcaption>
+</figure>
+
+<h2>Tesztelés a földön</h2>
+<div class="split">
+  <div class="prose">
+    <p>A kész paneleket szélsőséges körülmények között is kipróbáltuk. 2024 decemberében a Magyar Agrár- és Élettudományi Egyetem (MATE) laborjában ipari fagyasztóba tettük őket, ahol a legalacsonyabb hőmérséklet −35,5 °C volt. Sütőben 100 °C-on is teszteltük a paneleket. A szenzorok értékeit kalibrált műszerekkel vetettük össze. Megmértük a panel tömegét és az áramfelvételét is nyugalmi állapotban és legnagyobb terhelésnél, hogy igazoljuk, megfelel a műhold követelményeinek.</p>
+    <p>A fényszenzor tesztelése közben egy régi kérdésre is választ kaptunk: igen, a hűtő belsejében tényleg lekapcsol a lámpa, amikor becsukjuk az ajtót.</p>
+    <p>A pályán lévő panelnek van egy földi referenciapéldánya is. Ezzel össze tudjuk vetni, hogy az űrből érkező adatok egyes jellegzetességei a panel saját működéséből erednek-e.</p>
+  </div>
+  <div class="grid grid-2 grid--tall">
+    <figure>
+      <img class="photo" src="assets/img/fagyaszto-teszt.jpg" alt="Fagyasztó belseje rácsos polccal, alján a vezetékekkel bekötött panel" loading="lazy" width="900" height="1200">
+      <figcaption>A panel a fagyasztóban.</figcaption>
+    </figure>
+    <figure>
+      <img class="photo" src="assets/img/hideg-teszt-homero.jpg" alt="Kézi ALMEMO mérőműszer kijelzője a kamra hőmérsékletével" loading="lazy" width="600" height="800">
+      <figcaption>Mérőműszer a teszt közben.</figcaption>
+    </figure>
+  </div>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Seraph: hőmérsékleti kísérlet a HUNITY (NMHH-1) PocketQube műholdon.</p>
+    <p><a href="https://www.instagram.com/seraph.sat/">Instagram: @seraph.sat</a> · <a href="kapcsolat.html">Kapcsolat</a></p>
+  </div>
+</footer>
+</body>
+</html>

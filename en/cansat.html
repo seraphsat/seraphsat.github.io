@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CanSat Hungary 2024 – Seraph</title>
+<meta name="description" content="The Seraph team's CanSat Hungary 2024 project: air pressure and temperature, CO₂ measurement and the share of green areas from image analysis.">
+<link rel="alternate" hreflang="en" href="cansat.html">
+<link rel="alternate" hreflang="hu" href="../cansat.html">
+<link rel="icon" href="../assets/img/seraph-logo.png">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script src="../assets/js/nav.js"></script>
+</head>
+<body>
+<a class="skip" href="#tartalom">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="../assets/img/seraph-logo.png" alt="" width="40" height="40">Seraph</a>
+    <div class="header-tools">
+      <a class="lang-switch" href="../cansat.html" hreflang="hu" lang="hu" data-lang="hu" title="Ez az oldal magyarul">Magyar</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    </div>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experiment.html">The experiment</a></li>
+        <li><a href="hunity.html">HUNITY satellite</a></li>
+        <li><a href="results.html">Results</a></li>
+        <li><a href="cansat.html" aria-current="page">CanSat Hungary</a></li>
+        <li><a href="timeline.html">Timeline</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="tartalom">
+<div class="wrap">
+<h1>CanSat Hungary 2024</h1>
+<p class="lead">The Seraph team was formed for the CanSat Hungary 2024 competition. This page collects what we built and what happened during the competition.</p>
+
+<h2>What is a CanSat?</h2>
+<div class="prose">
+  <p>A CanSat is a "satellite" with the size and shape of a soft drink can. Students have to fit into this small volume everything a real satellite has: power, sensors and radio communication. The finished CanSat is carried by a rocket to about one kilometre (or dropped from a platform, a drone or a captive balloon), and it does its job while descending.</p>
+  <p>Every team has two missions. The primary mission is the same for everyone: measure air pressure and air temperature at least once a second and send the data down by radio. The secondary mission is chosen by the team.</p>
+  <p class="credit">Source: <a href="https://www.esa.int/Education/Teachers_Corner/Build_your_can-sized_satellite_with_CanSat_2024-2025">ESA, Build your can-sized satellite with CanSat</a></p>
+</div>
+
+<h2>Our CanSat</h2>
+<div class="split">
+  <div class="prose">
+    <p>We soldered the sensors and the microcontroller onto a circuit board, and a 3D-printed shell protected everything during launch and descent. A single battery powered it for at least four hours. A parachute slowed the descent.</p>
+    <table class="facts">
+      <tr><th>Air pressure and temperature</th><td>BMP280</td></tr>
+      <tr><th>Carbon dioxide</th><td>SCD30 (one reading every 2 seconds)</td></tr>
+      <tr><th>Camera</th><td>mini HD camera, facing down</td></tr>
+      <tr><th>Positioning</th><td>GPS module for finding the CanSat after landing</td></tr>
+      <tr><th>Data storage</th><td>SD card</td></tr>
+      <tr><th>Radio</th><td>data sent to the ground station every second</td></tr>
+    </table>
+  </div>
+  <div class="grid grid-2 grid--tall">
+    <figure><img class="photo" src="../assets/img/cansat-szerkezet.jpg" alt="Red 3D-printed CanSat frame with a circuit board standing upright inside" loading="lazy" width="600" height="800"><figcaption>The frame and the board.</figcaption></figure>
+    <figure><img class="photo" src="../assets/img/cansat-alaplap.jpg" alt="The soldered CanSat main board with a GPS antenna and a radio module" loading="lazy" width="326" height="435"><figcaption>The finished main board.</figcaption></figure>
+  </div>
+</div>
+
+<h3>Primary mission</h3>
+<p class="prose">The BMP280 sensor measured air pressure and temperature during the descent. The data was saved to the SD card and also sent to the ground station by radio every second.</p>
+
+<h3>Secondary mission: CO₂ and vegetation</h3>
+<div class="prose">
+  <p>Our question was whether the carbon dioxide level of the air is related to how much vegetation there is on the ground below. To find out, we measured two things at the same time.</p>
+  <p>The SCD30 precision CO₂ sensor gives a reading every two seconds. It works by infrared absorption: a special-wavelength infrared LED and a detector measure how much light the CO₂ absorbs. This makes it fairly fast and reliable, and it is easy to read over the I2C bus. We started from the assumption that carbon dioxide (molar mass 44 g/mol) is heavier than air (29 g/mol on average), so its concentration may decrease with height.</p>
+  <p>The camera at the bottom of the CanSat recorded video throughout the descent, giving us images from different heights. We could estimate the height from the air pressure. The share of green areas (trees, bushes, grass) in the images was determined by an artificial intelligence that we trained ourselves.</p>
+  <p>We collected the training data by hand: on RGB colour picker websites we looked at random colours and decided by eye whether each one counted as green. We collected 680 samples in total. After testing, the accuracy was about 91.9%. Since we deliberately gave the model more colours that occur in nature, we expected about 99% accuracy on real footage.</p>
+  <p>Our goal was to show that the amount of CO₂ is related to the amount of vegetation below it. We also wanted to draw attention to deforestation and to the growing amount of greenhouse gases.</p>
+</div>
+<div class="grid grid-2 grid--fit" style="margin-top:12px">
+  <figure><img class="photo" src="../assets/img/ai-alkalmazas.png" alt="The image analysis program window, showing the share of green pixels on a photo of a plant" loading="lazy" width="1100" height="580"><figcaption>The image analysis program with a test image.</figcaption></figure>
+  <figure><img class="photo" src="../assets/img/ai-kod.png" alt="Python code excerpt from the image analysis program" loading="lazy" width="781" height="444"><figcaption>An excerpt from the program code.</figcaption></figure>
+</div>
+
+<h2>The competition</h2>
+<div class="prose">
+  <p>In March 2024, at a meeting codenamed MWAIN ("Meeting without an interesting name"), we received the finalist medal, which meant we had qualified for the CanSat Hungary final. At the end of March we submitted the Pre-Launch Report (PLR). By then the main board was finished; we checked the structure with test throws in Palotakert, and the parachute in a drop test.</p>
+  <p>At the final on 6 April 2024 the team received the Scientific Award (a special prize) and an invitation to the Hungarian launch of ESA's ESERO programme. <a href="https://www.urvilag.hu/magyar_korszeru_oktatas/20240409_cansat_hungary_2024_%E2%80%93_donto" hreflang="hu">Report on the final by Űrvilág (in Hungarian)</a> · <a href="https://iskola.premontrei.hu/hirek/cansat-verseny" hreflang="hu">Our school's article (in Hungarian)</a></p>
+  <p>In May 2024 we also presented the project at the opening of <a href="https://eserohu.hu/">ESERO Hungary</a>, together with our school's CanSat team from the previous year, PreSat.</p>
+  <p>Our CanSat work became a TDK paper (Scientific Students' Associations) at MATE. At the <a href="https://uni-mate.hu/h%C3%ADr/-/content-viewer/m%C3%A9lt%C3%A1n-lehetnek-b%C3%BCszk%C3%A9k-a-tdk-r%C3%A9sztvev%C5%91i/20123" hreflang="hu">institutional TDK conference on 20 November 2024</a> we won 2nd place in the Materials, Industrial Technology and Mechatronics section (Máté Magó, Anna Horel, Zsigmond Csaba). This qualified us for the <a href="https://otdk.hu/otdk-archivum/korabbi-otdk-k/37-otdk/szekciok-felhivasai/muszaki-tudomanyi-szekcio/" hreflang="hu">Technical Sciences Section of the 37th OTDK</a>, where we presented the work at the University of Debrecen, Faculty of Engineering, on 23–25 April 2025.</p>
+</div>
+<div class="grid grid-3 grid--fit" style="margin-top:12px">
+  <figure><img class="photo" src="../assets/img/dontos-erem.jpg" alt="Red 3D-printed medal with the text Finalist and CanSat Hungary 2024" loading="lazy" width="700" height="688"><figcaption>The finalist medal.</figcaption></figure>
+  <figure><img class="photo" src="../assets/img/dontos-dij-csapat.jpg" alt="Three team members in front of a CanSat Hungary banner" loading="lazy" width="519" height="292"><figcaption>At the final.</figcaption></figure>
+  <figure><img class="photo" src="../assets/img/dij-trofea.png" alt="Gold-coloured, can-shaped trophy with the text CanSat Hungary" loading="lazy" width="253" height="313"><figcaption>A gold can with the text CanSat Hungary.</figcaption></figure>
+</div>
+
+<h2>Documentation</h2>
+<p class="prose">We wrote several reports during the competition. The most detailed one was the Critical Design Review (CDR), which describes the state of 17 February 2024. The sections below summarise it.</p>
+<div class="accordion">
+  <details>
+    <summary>Structure</summary>
+    <p>We designed the shell in Autodesk Fusion 360. It consists of two half-cylinders with rails on their sides, so they slide together precisely. At the bottom of one half there is a 1 cm hole for the camera lens. The wall, base and lid are 3 mm thick, which proved strong enough in the drop tests. The test shells were printed in white PLA; we planned the final version in bright pink to make it easier to find after landing.</p>
+    <p>The finished CanSat was 110 mm tall, 65 mm in diameter, and had a mass of 305 g (the competition required 300–350 g).</p>
+  </details>
+  <details>
+    <summary>Electronics and power</summary>
+    <p>The controller was an Adafruit Feather M0 Adalogger, which has a built-in SD card reader and can be programmed in the Arduino IDE. The sensors: BMP280 (air pressure and temperature), MPU6050 (acceleration), SCD30 (CO₂) and a NEO-7M GPS. The camera was an SQ11 mini HD camera with its own battery and SD card.</p>
+    <p>At first we used RFM69HCW radio modules, but data transmission was not reliable beyond 500 metres, so we switched to RFM95W LoRa modules in the 868 MHz band. Data was sent every second.</p>
+    <p>The planned total consumption was about 78 mA (about 255 mW). With a 3.7 V, 1200 mAh LiPo battery this means roughly 15 hours of operation, well above the approx. 4 hours planned for measuring.</p>
+  </details>
+  <details>
+    <summary>Parachute and descent</summary>
+    <p>The parachute is roughly a flat octagon with a radius of about 15.8 cm and a hole in the middle for a more stable descent. Calculating with a cautious drag coefficient of 1.1 gave a descent rate of about 7 m/s. We tested its strength with a 6-litre water jug (about 50 N).</p>
+    <p>We did drop tests in the school hall (2 floors), in the university hall (4 floors) and finally from a 10-storey building in Palotakert, Gödöllő. From the change of the height calculated from air pressure we measured an average descent rate of about 7.5 m/s, with an error of about 7%. This fits the competition's 5–12 m/s requirement; the estimated flight time was about 130 s.</p>
+  </details>
+  <details>
+    <summary>Sensor calibration</summary>
+    <p>We compared the BMP280's pressure readings with a Greisinger GTD 1100 instrument in a sealed jar with the pressure lowered by a vacuum pump: the offset was only 3 Pa. We checked the temperature between −20 °C and 25 °C (freezer, fridge, room temperature) and found an offset of −1.5 °C, which the program corrects.</p>
+    <p>For CO₂ we first tried an Adafruit CCS811, but it did not measure reliably below 600 ppm. We compared the SCD30 in a sealed aquarium with an ALMEMO 2590 data logger and a certified CO₂ sensor borrowed from the environmental engineering lab of MATE. Its sensitivity matched the reference, and the program corrects the 213 ppm offset.</p>
+    <p>To recognise vegetation, we used an Ocean Optics USB2000+ spectrometer (400–1050 nm) to record the spectrum of natural light and of light reflected from different plants. Chlorophyll causes a characteristic "valley" in the spectrum of every leaf, and the image analysis was built on this.</p>
+  </details>
+  <details>
+    <summary>Ground station</summary>
+    <p>The ground station was a laptop with an Arduino Uno and the same RFM95W radio as in the CanSat. The Arduino only passed the data on; processing ran on the laptop, for example with Excel's Data Streamer add-in, which puts the values into a table and a chart live.</p>
+  </details>
+  <details>
+    <summary>Costs and outreach</summary>
+    <p>The components, printer filament, cables and parachute material cost about 107 euros in total (the competition limit was 500 euros).</p>
+    <p>We posted about our progress on Instagram, and one of our short videos reached 450 views. At school we organised a programme: our 3D printer was working in the middle of the main hall, by our estimate 300–400 students walked past it, and we gave a talk to those interested.</p>
+  </details>
+</div>
+
+<h2 id="kepek">Photos</h2>
+<div class="gallery">
+  <img src="../assets/img/projekt-indul.jpg" alt="Instagram collage titled Project underway: code on a screen and the first sensors" loading="lazy" width="450" height="800">
+  <img src="../assets/img/szenzorteszt.jpg" alt="Sensors and a development board connected with many coloured wires on a desk" loading="lazy" width="600" height="800">
+  <img src="../assets/img/co2-teszt.jpg" alt="A glass jar with a small circuit inside, next to a wired-up control board" loading="lazy" width="800" height="450">
+  <img src="../assets/img/noveny-teszt.jpg" alt="Leaves of a house plant; the same plant appears on the image analysis test picture" loading="lazy" width="800" height="450">
+  <img src="../assets/img/cansat-ejtoernyo-teszt.jpg" alt="A team member holding a parachute with a bucket of water hanging from it as a load" loading="lazy" width="600" height="800">
+  <img src="../assets/img/cansat-belseje.jpg" alt="A half-open CanSat held in a hand, with the circuits and the packed parachute inside" loading="lazy" width="600" height="800">
+  <img src="../assets/img/forrasztas-1.jpg" alt="A team member soldering in a school lab" loading="lazy" width="600" height="800">
+  <img src="../assets/img/cansat-panel-gps.jpg" alt="The main board with a GPS antenna, an SD card reader and a radio module" loading="lazy" width="600" height="800">
+  <img src="../assets/img/cansat-panel-laptop.jpg" alt="A prototype board connected to a laptop during a measurement" loading="lazy" width="600" height="800">
+  <img src="../assets/img/cansat-prototipus.jpg" alt="A test board with many coloured wires and a GPS antenna" loading="lazy" width="600" height="800">
+  <img src="../assets/img/cansat-belso-kozeli.jpg" alt="Close-up of the inside of the CanSat, the circuit next to the red wall of the shell" loading="lazy" width="600" height="800">
+  <img src="../assets/img/nyomtatas-1.jpg" alt="A 3D printer printing a red cylinder, with wires on the bed" loading="lazy" width="600" height="800">
+  <img src="../assets/img/csapatpolo.jpg" alt="Black team T-shirt with the Seraph logo and the text CanSat Hungary 2024" loading="lazy" width="800" height="800">
+  <img src="../assets/img/esero-csoportkep.jpg" alt="Group photo of the Seraph and PreSat team members at the ESERO Hungary opening" loading="lazy" width="800" height="533">
+  <img src="../assets/img/esero-1.jpg" alt="The team presenting at the ESERO Hungary opening, the audience in the foreground" loading="lazy" width="800" height="533">
+  <img src="../assets/img/esero-2.jpg" alt="Two team members speaking on stage at the ESERO Hungary opening" loading="lazy" width="800" height="533">
+  <img src="../assets/img/esero-3.jpg" alt="A team member on stage next to a banner with the ESERO and ESA logos" loading="lazy" width="800" height="533">
+</div>
+<p class="credit">Photos of the ESERO opening: Design Terminal.</p>
+
+<h2>Supporters of the CanSat project</h2>
+<p class="prose">The CanSat project was supported by our school, the Premontrei Szent Norbert Gimnázium in Gödöllő, and by the Hungarian University of Agriculture and Life Sciences next to it. In the university's workshop we could 3D print, solder and calibrate our sensors with their instruments. The logos are on the <a href="index.html">home page</a>.</p>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Seraph: a thermal experiment on the HUNITY (NMHH-1) PocketQube satellite.</p>
+    <p><a href="https://www.instagram.com/seraph.sat/">Instagram: @seraph.sat</a> · <a href="contact.html">Contact</a></p>
+  </div>
+</footer>
+</body>
+</html>
